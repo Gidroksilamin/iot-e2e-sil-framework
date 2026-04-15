@@ -1,0 +1,16 @@
+services:
+  # Central message broker for Status Bar and Cloud communication
+  mqtt-broker:
+    image: eclipse-mosquitto:2.0
+    container_name: statusbar_broker
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./config:/mosquitto/config
+    networks:
+      - sil-network
+
+networks:
+  # Isolated network for Software-in-the-Loop components
+  sil-network:
+    driver: bridge
